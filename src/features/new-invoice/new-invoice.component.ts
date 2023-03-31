@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {
@@ -14,6 +14,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {InvoiceStateService} from "../../state/services/invoice-state.service";
+import {Invoice} from "../../state/model/invoice-model";
 
 const nameMinCharacters = 3;
 const nameMaxCharacters = 30;
@@ -32,6 +34,7 @@ const nameMaxCharacters = 30;
   styleUrls: ['./new-invoice.component.scss']
 })
 export class NewInvoiceComponent implements OnInit {
+  private readonly invoiceData = inject(InvoiceStateService);
   invoiceForm = this.fb.group({
     invoiceRow: this.fb.array([])
   });
@@ -113,6 +116,6 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.invoiceForm.value);
+    this.invoiceData.setInvoiceOption(this.invoiceForm.value.invoiceRow as Invoice[])
   }
 }

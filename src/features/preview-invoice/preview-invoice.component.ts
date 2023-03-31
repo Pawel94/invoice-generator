@@ -5,7 +5,6 @@ import {MatTableModule} from "@angular/material/table";
 import {PreviewInvoiceTableComponent} from "./preview-invoice-table/preview-invoice-table.component";
 import {CompanyDataService} from "../../state/services/server-communication/company-data.service";
 import {PreviewInvoiceInfoComponent} from "./preview-invoice-info/preview-invoice-info.component";
-import {map} from "rxjs";
 
 
 @Component({
@@ -20,6 +19,7 @@ export class PreviewInvoiceComponent implements OnInit {
   private readonly companyData = inject(CompanyDataService);
   selectedInvoiceOption$ = this.invoiceData.selectedInvoiceOption$;
   companyInfoFromServer$ = this.companyData.getCompanyData()
+
   constructor() {
   }
 

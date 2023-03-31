@@ -21,7 +21,13 @@ const nameMaxCharacters = 30;
 @Component({
   selector: 'app-new-invoice',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, MatInputModule, MatIconModule, MatButtonModule, MatGridListModule],
+  imports: [CommonModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatGridListModule],
   templateUrl: './new-invoice.component.html',
   styleUrls: ['./new-invoice.component.scss']
 })

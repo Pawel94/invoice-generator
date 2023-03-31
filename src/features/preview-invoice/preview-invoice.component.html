@@ -1,6 +1,8 @@
 <div>
-
-
+<app-preview-invoice-info
+  [companyInfo]="(companyInfoFromServer$ |async)!">
+</app-preview-invoice-info>
+<hr>
   <app-preview-invoice-table
     [selectedInvoiceOption]="(selectedInvoiceOption$ |async) ?? []">
   </app-preview-invoice-table>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Invoice} from "../../../state/model/invoice-model";
 import {MatTableModule} from "@angular/material/table";
@@ -10,7 +10,7 @@ import {MatTableModule} from "@angular/material/table";
   templateUrl: './preview-invoice-table.component.html',
   styleUrls: ['./preview-invoice-table.component.scss']
 })
-export class PreviewInvoiceTableComponent implements OnInit {
+export class PreviewInvoiceTableComponent {
 
   @Input() selectedInvoiceOption?: Invoice[]
 
@@ -19,10 +19,7 @@ export class PreviewInvoiceTableComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-  }
-
   getAmountPrice(data: Invoice[]) {
-    return data.reduce((acc, curr) => Number(acc) + Number(curr.price), 0);
+    return data.reduce((acc, curr) => Number(acc) + Number(curr.price) * Number(curr.count), 0);
   }
 }

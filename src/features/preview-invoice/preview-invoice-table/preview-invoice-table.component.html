@@ -1,8 +1,4 @@
-<p>preview-invoice works!</p>
-{{selectedInvoiceOption | json}}
-
 <ng-container *ngIf="selectedInvoiceOption as data ">
-
   <ng-container *ngIf="data.length !== 0 ">
     <table mat-table [dataSource]="data" class="mat-elevation-z0">
 

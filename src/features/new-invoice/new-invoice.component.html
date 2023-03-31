@@ -10,26 +10,33 @@
               *ngIf="getFormGroup(invoiceRow).controls['name'].hasError('minlength')">{{getSyntaxForMinimumCharLength()}}</mat-error>
             <mat-error
               *ngIf="getFormGroup(invoiceRow).controls['name'].hasError('maxlength')">{{getSyntaxForMaximumCharLength()}}</mat-error>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['name'].hasError('required')">{{getEmptyErrorMessage()}}</mat-error>
           </mat-form-field>
+
           <mat-form-field appearance="fill">
             <mat-label>Count</mat-label>
             <input matInput formControlName="count" required>
             <mat-error
-              *ngIf="getFormGroup(invoiceRow).controls['count'].hasError('min')">{{getErrorMessageForMinValue('count')}}</mat-error>
+              *ngIf="getFormGroup(invoiceRow).controls['count'].hasError('min')">{{getErrorMessageForMinValue()}}</mat-error>
             <mat-error
               *ngIf="getFormGroup(invoiceRow).controls['count'].hasError('max')">{{getErrorMessageForMaxValue('count')}}</mat-error>
             <mat-error
               *ngIf="getFormGroup(invoiceRow).controls['count'].hasError('pattern')">{{getSyntaxErrorMessage()}}</mat-error>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['count'].hasError('required')">{{getEmptyErrorMessage()}}</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Price</mat-label>
             <input matInput formControlName="price" required>
             <mat-error
-              *ngIf="getFormGroup(invoiceRow).controls['price'].hasError('min')">{{getErrorMessageForMinValue('price')}}</mat-error>
+              *ngIf="getFormGroup(invoiceRow).controls['price'].hasError('min')">{{getErrorMessageForMinValue()}}</mat-error>
             <mat-error
               *ngIf="getFormGroup(invoiceRow).controls['price'].hasError('max')">{{getErrorMessageForMaxValue('price')}}</mat-error>
             <mat-error
               *ngIf="getFormGroup(invoiceRow).controls['price'].hasError('pattern')">{{getSyntaxErrorMessage()}}</mat-error>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['price'].hasError('required')">{{getEmptyErrorMessage()}}</mat-error>
           </mat-form-field>
           <button mat-icon-button color="primary" aria-label="Example icon button with a delete icon"
                   (click)="deleteInvoiceRow(i)">

@@ -7,12 +7,13 @@ import {AppComponent} from "./app/app.component";
 import {RouterModule} from "@angular/router";
 import {routes} from "./app/app-routing.module";
 import {provideAnimations} from "@angular/platform-browser/animations";
+import {HttpClientModule,} from '@angular/common/http';
 
 if (environment.production) {
   enableProdMode();
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [importProvidersFrom(RouterModule.forRoot(routes)), provideAnimations()]
+  providers: [importProvidersFrom(RouterModule.forRoot(routes), HttpClientModule), provideAnimations()]
 });
 

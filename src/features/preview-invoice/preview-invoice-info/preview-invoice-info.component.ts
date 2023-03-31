@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, Input} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {CompanyInfo} from "../../../state/model/company-info-model";
 
 @Component({
   selector: 'app-preview-invoice-info',
@@ -8,11 +9,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './preview-invoice-info.component.html',
   styleUrls: ['./preview-invoice-info.component.scss']
 })
-export class PreviewInvoiceInfoComponent implements OnInit {
+export class PreviewInvoiceInfoComponent {
 
-  constructor() { }
+  @Input() companyInfo?: CompanyInfo;
 
-  ngOnInit(): void {
+  constructor() {
   }
 
+
+  showPhones(phones: string[]) {
+    return phones.join(", ")
+  }
 }

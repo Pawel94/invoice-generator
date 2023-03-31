@@ -1,1 +1,12 @@
-<p>preview-invoice-info works!</p>
+<ng-container *ngIf="companyInfo">
+  <h1>
+{{companyInfo.name}}
+  </h1>
+  <h2>
+    {{companyInfo.address}}
+  </h2>
+
+  <p>
+    {{showPhones(companyInfo.phones)}}
+  </p>
+</ng-container>

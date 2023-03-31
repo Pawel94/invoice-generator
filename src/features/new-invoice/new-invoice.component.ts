@@ -16,6 +16,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {InvoiceStateService} from "../../state/services/invoice-state.service";
 import {Invoice} from "../../state/model/invoice-model";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 const nameMinCharacters = 3;
 const nameMaxCharacters = 30;
@@ -29,45 +31,25 @@ const nameMaxCharacters = 30;
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatGridListModule],
+    MatGridListModule,
+    MatSnackBarModule],
   templateUrl: './new-invoice.component.html',
   styleUrls: ['./new-invoice.component.scss']
 })
 export class NewInvoiceComponent implements OnInit {
   private readonly invoiceData = inject(InvoiceStateService);
+  private readonly fb = inject(FormBuilder)
+  private readonly _snackBar = inject(MatSnackBar)
+  private readonly invoiceState = inject(InvoiceStateService)
+  private readonly router = inject(Router)
   invoiceForm = this.fb.group({
     invoiceRow: this.fb.array([])
   });
 
-  getSyntaxForMinimumCharLength() {
-    return 'Min length 3'
-  }
-
-  getSyntaxForMaximumCharLength() {
-    return 'Min length 30'
-  }
-
-  getErrorMessageForMinValue(value: string) {
-    if (value === 'price') return 'Min length 0'
-    else if (value === 'count') return 'Min length 1'
-    return ''
-  }
-
-  getErrorMessageForMaxValue(value: string) {
-    if (value === 'price') return 'Max length 100'
-    else if (value === 'count') return 'Max length 1000000'
-    return ''
-  }
-
-  getSyntaxErrorMessage() {
-    return 'Please input number'
-  }
-
-  constructor(private readonly fb: FormBuilder) {
-  }
 
   ngOnInit(): void {
     this.addNewInvoiceGroup()
+    this.invoiceState.clearInvoiceOption()
   }
 
   get invoiceRow() {
@@ -75,7 +57,7 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   addNewInvoiceGroup(): void {
-    const lessonForm = this.fb.group({
+    const newInvoiceRow = this.fb.group({
       name: new FormControl<string>('', {
         nonNullable: true,
         validators: [
@@ -97,13 +79,13 @@ export class NewInvoiceComponent implements OnInit {
         nonNullable: true,
         validators: [
           Validators.required,
-          Validators.min(0),
+          Validators.min(1),
           Validators.max(1000000.),
           Validators.pattern("^[0-9]*$"),
         ],
       }),
     });
-    this.invoiceRow.push(lessonForm);
+    this.invoiceRow.push(newInvoiceRow);
 
   }
 
@@ -115,7 +97,46 @@ export class NewInvoiceComponent implements OnInit {
     this.invoiceRow.removeAt(index);
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
   submitForm() {
-    this.invoiceData.setInvoiceOption(this.invoiceForm.value.invoiceRow as Invoice[])
+    this.invoiceForm.markAllAsTouched()
+    if (this.invoiceForm.value.invoiceRow?.length === 0) {
+      this.openSnackBar("Please add items", "ok")
+    }
+    else if (this.invoiceForm.status === "VALID") {
+      this.invoiceData.setInvoiceOption(this.invoiceForm.value.invoiceRow as Invoice[])
+      this.router.navigate(['/', 'preview']);
+
+    }
+
+  }
+
+  getSyntaxForMinimumCharLength(): string {
+    return 'Min length 3'
+  }
+
+  getSyntaxForMaximumCharLength(): string {
+    return 'Min length 30'
+  }
+
+  getErrorMessageForMinValue(): string {
+    return 'Min length 1'
+  }
+
+  getErrorMessageForMaxValue(value: string): string {
+    if (value === 'price') return 'Max length 100'
+    else if (value === 'count') return 'Max length 1000000'
+    return ''
+  }
+
+  getSyntaxErrorMessage(): string {
+    return 'Please input number'
+  }
+
+  getEmptyErrorMessage(): string {
+    return 'Please input value'
   }
 }

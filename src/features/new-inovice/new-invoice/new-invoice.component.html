@@ -1,0 +1,54 @@
+<div class="invoice-form" [formGroup]="invoiceForm">
+  <ng-container formArrayName="invoiceRow">
+    <ng-container *ngFor="let invoiceRow of invoiceRow.controls; let i = index">
+      <div class="invoice-form-row" [formGroup]="getFormGroup(invoiceRow)">
+        <div class="example-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="name" required>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['name'].hasError('minlength')">{{getSyntaxForMinimumCharLength()}}</mat-error>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['name'].hasError('maxlength')">{{getSyntaxForMaximumCharLength()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Count</mat-label>
+            <input matInput formControlName="count" required>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['count'].hasError('min')">{{getErrorMessageForMinValue('count')}}</mat-error>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['count'].hasError('max')">{{getErrorMessageForMaxValue('count')}}</mat-error>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['count'].hasError('pattern')">{{getSyntaxErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Price</mat-label>
+            <input matInput formControlName="price" required>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['price'].hasError('min')">{{getErrorMessageForMinValue('price')}}</mat-error>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['price'].hasError('max')">{{getErrorMessageForMaxValue('price')}}</mat-error>
+            <mat-error
+              *ngIf="getFormGroup(invoiceRow).controls['price'].hasError('pattern')">{{getSyntaxErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <button mat-icon-button color="primary" aria-label="Example icon button with a delete icon"
+                  (click)="deleteInvoiceRow(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div>
+  <div class="btn-container">
+    <button mat-button color="primary" (click)="addNewInvoiceGroup()">
+      <mat-icon class="add-course-btn">add</mat-icon>
+      Add new item
+    </button>
+  </div>
+  <div class="btn-container">
+    <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+  </div>
+</div>

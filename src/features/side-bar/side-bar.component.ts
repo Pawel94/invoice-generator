@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
@@ -11,7 +11,8 @@ import {RouterLink, RouterModule} from "@angular/router";
   standalone: true,
   imports: [CommonModule, MatSidenavModule, MatListModule, MatButtonModule, MatToolbarModule, RouterLink, RouterModule],
   templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.scss']
+  styleUrls: ['./side-bar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideBarComponent {
 

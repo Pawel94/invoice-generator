@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatSidenav, MatSidenavModule} from "@angular/material/sidenav";
 
@@ -25,17 +25,16 @@ import {RouterOutlet} from "@angular/router";
     NewInvoiceComponent,
     RouterOutlet],
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss']
+  styleUrls: ['./main-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainPageComponent implements OnInit, AfterViewInit {
+export class MainPageComponent implements AfterViewInit {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver) {
+  constructor(private readonly observer: BreakpointObserver, private readonly cdRef: ChangeDetectorRef) {
   }
 
-  ngOnInit(): void {
-  }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
@@ -47,6 +46,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
         this.sidenav.open();
       }
     });
+    this.cdRef.detectChanges();
   }
 
 

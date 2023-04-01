@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Invoice} from "../../../state/model/invoice-model";
 import {MatTableModule} from "@angular/material/table";
@@ -8,7 +8,8 @@ import {MatTableModule} from "@angular/material/table";
   standalone: true,
   imports: [CommonModule, MatTableModule],
   templateUrl: './preview-invoice-table.component.html',
-  styleUrls: ['./preview-invoice-table.component.scss']
+  styleUrls: ['./preview-invoice-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PreviewInvoiceTableComponent {
 

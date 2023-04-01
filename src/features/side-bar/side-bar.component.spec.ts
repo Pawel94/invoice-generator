@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SideBarComponent } from './side-bar.component';
+import {SideBarComponent} from './side-bar.component';
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('SideBarComponent', () => {
   let component: SideBarComponent;
@@ -8,9 +9,9 @@ describe('SideBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ SideBarComponent ]
+      imports: [SideBarComponent, RouterTestingModule,]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SideBarComponent);
     component = fixture.componentInstance;

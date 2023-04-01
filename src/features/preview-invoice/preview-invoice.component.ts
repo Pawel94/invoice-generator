@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {InvoiceStateService} from "../../state/services/state/invoice-state.service";
 import {MatTableModule} from "@angular/material/table";
@@ -15,7 +15,8 @@ import {CompanyInfo} from "../../state/model/company-info-model";
   selector: 'app-preview-invoice',
   imports: [CommonModule, MatTableModule, PreviewInvoiceTableComponent, PreviewInvoiceInfoComponent, MatSnackBarModule],
   templateUrl: './preview-invoice.component.html',
-  styleUrls: ['./preview-invoice.component.scss']
+  styleUrls: ['./preview-invoice.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PreviewInvoiceComponent {
   private readonly invoiceData = inject(InvoiceStateService);

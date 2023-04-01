@@ -1,6 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PreviewInvoiceComponent } from './preview-invoice.component';
+import {PreviewInvoiceComponent} from './preview-invoice.component';
+import {RouterTestingModule} from "@angular/router/testing";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {HttpClientModule} from "@angular/common/http";
 
 describe('PreviewInvoiceComponent', () => {
   let component: PreviewInvoiceComponent;
@@ -8,9 +11,9 @@ describe('PreviewInvoiceComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ PreviewInvoiceComponent ]
+      imports: [PreviewInvoiceComponent, RouterTestingModule, BrowserAnimationsModule, HttpClientModule]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(PreviewInvoiceComponent);
     component = fixture.componentInstance;

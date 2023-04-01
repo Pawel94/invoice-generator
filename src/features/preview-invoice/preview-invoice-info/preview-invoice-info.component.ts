@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CompanyInfo} from "../../../state/model/company-info-model";
 
@@ -7,7 +7,8 @@ import {CompanyInfo} from "../../../state/model/company-info-model";
   standalone: true,
   imports: [CommonModule],
   templateUrl: './preview-invoice-info.component.html',
-  styleUrls: ['./preview-invoice-info.component.scss']
+  styleUrls: ['./preview-invoice-info.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PreviewInvoiceInfoComponent {
 

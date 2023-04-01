@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {
@@ -35,7 +35,8 @@ const minNumber = 1;
     MatGridListModule,
     MatSnackBarModule],
   templateUrl: './new-invoice.component.html',
-  styleUrls: ['./new-invoice.component.scss']
+  styleUrls: ['./new-invoice.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewInvoiceComponent implements OnInit {
   private readonly invoiceData = inject(InvoiceStateService);

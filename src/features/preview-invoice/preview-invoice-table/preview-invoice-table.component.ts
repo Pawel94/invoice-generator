@@ -16,10 +16,7 @@ export class PreviewInvoiceTableComponent {
 
   displayedColumns: string[] = ['position', 'name', 'count', 'price'];
 
-  constructor() {
-  }
-
-  getAmountPrice(data: Invoice[]) {
+  getAmountPrice(data: Invoice[]): number {
     return data.reduce((acc, curr) => Number(acc) + Number(curr.price) * Number(curr.count), 0);
   }
 }

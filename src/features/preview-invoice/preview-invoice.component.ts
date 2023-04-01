@@ -1,30 +1,35 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {InvoiceStateService} from "../../state/services/invoice-state.service";
+import {InvoiceStateService} from "../../state/services/state/invoice-state.service";
 import {MatTableModule} from "@angular/material/table";
 import {PreviewInvoiceTableComponent} from "./preview-invoice-table/preview-invoice-table.component";
 import {CompanyDataService} from "../../state/services/server-communication/company-data.service";
 import {PreviewInvoiceInfoComponent} from "./preview-invoice-info/preview-invoice-info.component";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {catchError, of} from "rxjs";
+import {CompanyInfo} from "../../state/model/company-info-model";
 
 
 @Component({
   standalone: true,
   selector: 'app-preview-invoice',
-  imports: [CommonModule, MatTableModule, PreviewInvoiceTableComponent, PreviewInvoiceInfoComponent],
+  imports: [CommonModule, MatTableModule, PreviewInvoiceTableComponent, PreviewInvoiceInfoComponent, MatSnackBarModule],
   templateUrl: './preview-invoice.component.html',
   styleUrls: ['./preview-invoice.component.scss']
 })
-export class PreviewInvoiceComponent implements OnInit {
+export class PreviewInvoiceComponent {
   private readonly invoiceData = inject(InvoiceStateService);
   private readonly companyData = inject(CompanyDataService);
+  private readonly _snackBarError = inject(MatSnackBar)
   selectedInvoiceOption$ = this.invoiceData.selectedInvoiceOption$;
-  companyInfoFromServer$ = this.companyData.getCompanyData()
+  companyInfoFromServer$ = this.companyData.getCompanyData().pipe(catchError(err => {
+    this.openSnackBarError(err, "ok")
+    return of({} as CompanyInfo)
+  }))
 
-  constructor() {
+  private openSnackBarError(message: string, action: string): void {
+    this._snackBarError.open(message, action);
   }
 
-  ngOnInit(): void {
-    this.companyData.getCompanyData()
-  }
 
 }

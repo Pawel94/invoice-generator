@@ -14,13 +14,14 @@ import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
-import {InvoiceStateService} from "../../state/services/invoice-state.service";
+import {InvoiceStateService} from "../../state/services/state/invoice-state.service";
 import {Invoice} from "../../state/model/invoice-model";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 
 const nameMinCharacters = 3;
 const nameMaxCharacters = 30;
+const minNumber = 1;
 
 @Component({
   selector: 'app-new-invoice',
@@ -42,6 +43,7 @@ export class NewInvoiceComponent implements OnInit {
   private readonly _snackBar = inject(MatSnackBar)
   private readonly invoiceState = inject(InvoiceStateService)
   private readonly router = inject(Router)
+
   invoiceForm = this.fb.group({
     invoiceRow: this.fb.array([])
   });
@@ -52,7 +54,7 @@ export class NewInvoiceComponent implements OnInit {
     this.invoiceState.clearInvoiceOption()
   }
 
-  get invoiceRow() {
+  get invoiceRow(): FormArray {
     return this.invoiceForm.controls["invoiceRow"] as FormArray;
   }
 
@@ -70,7 +72,7 @@ export class NewInvoiceComponent implements OnInit {
         nonNullable: true,
         validators: [
           Validators.required,
-          Validators.min(1),
+          Validators.min(minNumber),
           Validators.max(100),
           Validators.pattern("^[0-9]*$"),],
 
@@ -79,8 +81,8 @@ export class NewInvoiceComponent implements OnInit {
         nonNullable: true,
         validators: [
           Validators.required,
-          Validators.min(1),
-          Validators.max(1000000.),
+          Validators.min(minNumber),
+          Validators.max(1000000),
           Validators.pattern("^[0-9]*$"),
         ],
       }),
@@ -97,19 +99,17 @@ export class NewInvoiceComponent implements OnInit {
     this.invoiceRow.removeAt(index);
   }
 
-  openSnackBar(message: string, action: string) {
+  openSnackBar(message: string, action: string): void {
     this._snackBar.open(message, action);
   }
 
-  submitForm() {
+  submitForm(): void {
     this.invoiceForm.markAllAsTouched()
     if (this.invoiceForm.value.invoiceRow?.length === 0) {
       this.openSnackBar("Please add items", "ok")
-    }
-    else if (this.invoiceForm.status === "VALID") {
+    } else if (this.invoiceForm.status === "VALID") {
       this.invoiceData.setInvoiceOption(this.invoiceForm.value.invoiceRow as Invoice[])
       this.router.navigate(['/', 'preview']);
-
     }
 
   }
@@ -127,8 +127,8 @@ export class NewInvoiceComponent implements OnInit {
   }
 
   getErrorMessageForMaxValue(value: string): string {
-    if (value === 'price') return 'Max length 100'
-    else if (value === 'count') return 'Max length 1000000'
+    if (value === 'price') return 'Max length 1000000'
+    else if (value === 'count') return 'Max length 100'
     return ''
   }
 

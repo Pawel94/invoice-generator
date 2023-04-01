@@ -10,6 +10,11 @@ export const routes: Routes = [
     path: 'preview',
     loadComponent: () => import('../features/preview-invoice/preview-invoice.component')
       .then(m => m.PreviewInvoiceComponent)
+  },
+  {
+    path: '**',
+    loadComponent: () => import('../features/new-invoice/new-invoice.component')
+      .then(m => m.NewInvoiceComponent)
   }
 ];
 

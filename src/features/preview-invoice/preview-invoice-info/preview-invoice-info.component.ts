@@ -13,10 +13,6 @@ export class PreviewInvoiceInfoComponent {
 
   @Input() companyInfo?: CompanyInfo;
 
-  constructor() {
-  }
-
-
   showPhones(phones: string[]) {
     return phones.join(", ")
   }

@@ -1,13 +1,12 @@
-<ng-container *ngIf="companyInfo">
-  <div>
-    <h1>
-      {{companyInfo.name}}
-    </h1>
-    <h2>
-      {{companyInfo.address}}
-    </h2>
-    <p>
-      {{showPhones(companyInfo.phones)}}
-    </p>
-  </div>
-</ng-container>
+<div *ngIf="companyInfo">
+  <h1>
+    {{companyInfo.name}}
+  </h1>
+  <h2>
+    {{companyInfo.address}}
+  </h2>
+  <p>
+    {{showPhones(companyInfo.phones)}}
+  </p>
+</div>
+

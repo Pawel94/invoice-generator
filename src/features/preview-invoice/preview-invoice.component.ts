@@ -1,13 +1,14 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {InvoiceStateService} from "../../state/services/state/invoice-state.service";
+import {InvoiceStateService} from "../../shared/services";
 import {MatTableModule} from "@angular/material/table";
 import {PreviewInvoiceTableComponent} from "./preview-invoice-table/preview-invoice-table.component";
-import {CompanyDataService} from "../../state/services/server-communication/company-data.service";
+import {CompanyDataService} from "../../shared/services";
 import {PreviewInvoiceInfoComponent} from "./preview-invoice-info/preview-invoice-info.component";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {catchError, of} from "rxjs";
-import {CompanyInfo} from "../../state/model/company-info-model";
+import {CompanyInfo} from "../../shared/model";
+import {Action} from "../../shared/model";
 
 
 @Component({
@@ -24,11 +25,11 @@ export class PreviewInvoiceComponent {
   private readonly _snackBarError = inject(MatSnackBar)
   selectedInvoiceOption$ = this.invoiceData.selectedInvoiceOption$;
   companyInfoFromServer$ = this.companyData.getCompanyData().pipe(catchError(err => {
-    this.openSnackBarError(err, "ok")
+    this.openSnackBarError(err, Action.OK)
     return of({} as CompanyInfo)
   }))
 
-  private openSnackBarError(message: string, action: string): void {
+  private openSnackBarError(message: string, action: Action): void {
     this._snackBarError.open(message, action);
   }
 

@@ -6,7 +6,6 @@ import {CommonModule} from "@angular/common";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
   imports: [CommonModule, MainPageComponent],
   standalone: true
 })

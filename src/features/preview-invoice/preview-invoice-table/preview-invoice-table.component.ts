@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Invoice} from "../../../state/model/invoice-model";
+import {Invoice} from "../../../shared/model";
 import {MatTableModule} from "@angular/material/table";
 
 @Component({
@@ -13,11 +13,11 @@ import {MatTableModule} from "@angular/material/table";
 })
 export class PreviewInvoiceTableComponent {
 
-  @Input() selectedInvoiceOption?: Invoice[]
+  @Input() selectedInvoiceOption?: Invoice[];
 
   displayedColumns: string[] = ['position', 'name', 'count', 'price'];
 
   getAmountPrice(data: Invoice[]): number {
-    return data.reduce((acc, curr) => Number(acc) + Number(curr.price) * Number(curr.count), 0);
+    return data.reduce((acc, curr) => acc + curr.price * curr.count, 0);
   }
 }

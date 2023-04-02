@@ -1,19 +1,18 @@
-<ng-container>
-  <div>
-    <mat-toolbar class="main-text-container">
-      <h1>Menu</h1>
-    </mat-toolbar>
-    <div class="btn-container">
-      <button mat-stroked-button class="btn-side-bar" routerLinkActive="active-link" [routerLink]="[
+<div>
+  <mat-toolbar class="main-text-container">
+    <h1>Menu</h1>
+  </mat-toolbar>
+  <div class="btn-container">
+    <button mat-stroked-button class="btn-side-bar" routerLinkActive="active-link" [routerLink]="[
         '/',
       ]" [routerLinkActiveOptions]="{exact:true}">New invoice
-      </button>
-      <button mat-stroked-button class="btn-side-bar" routerLinkActive="active-link"
-              [routerLink]="[
+    </button>
+    <button mat-stroked-button class="btn-side-bar" routerLinkActive="active-link"
+            [routerLink]="[
         '/preview',
       ]">Preview invoice
-      </button>
-    </div>
+    </button>
   </div>
-</ng-container>
+</div>
+
 

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CompanyInfo} from "../../../state/model/company-info-model";
+import {CompanyInfo} from "../../../shared/model";
 
 @Component({
   selector: 'app-preview-invoice-info',

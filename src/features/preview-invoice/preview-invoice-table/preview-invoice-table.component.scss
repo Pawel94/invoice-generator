@@ -1,17 +1,17 @@
+@import 'src/styles/variables';
 
 table {
-  //width: 100%;
-  background-color: rgb(250 250 250);
-  color: black;
+  background-color: $col-table;
+  color: $col-font
 }
 
 .mat-header-cell {
   text-align: center;
-  border-left: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-top: 1px solid #e0e0e0;
+  border-left: $border-style;
+  border-right: $border-style;
+  border-top: $border-style;
   font-weight: bold;
-  color: black;
+  color: $col-font
 }
 
 .mat-header-cell:first-of-type {
@@ -20,9 +20,9 @@ table {
 
 .mat-cell {
   text-align: left;
-  width: 100px;
-  border-left: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
+  width: 7vw;
+  border-left: $border-style;
+  border-right: $border-style;
 }
 
 .mat-cell:first-of-type {
@@ -32,10 +32,11 @@ table {
 
 .mat-footer-cell:first-of-type {
   text-align: right;
-  border-left: 1px solid #e0e0e0;
+  border-left: $border-style;
 }
+
 .mat-footer-cell:last-child{
   text-align: right;
   font-weight: bold;
-  border-right: 1px solid #e0e0e0;
+  border-right: $border-style;
 }

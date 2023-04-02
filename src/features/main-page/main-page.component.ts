@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatSidenav, MatSidenavModule} from "@angular/material/sidenav";
 
@@ -11,6 +11,8 @@ import {MatButtonModule} from "@angular/material/button";
 
 import {BreakpointObserver} from "@angular/cdk/layout";
 import {RouterOutlet} from "@angular/router";
+
+const maxWidthPattern = '(max-width: 800px)'
 
 @Component({
   selector: 'app-main-page',
@@ -29,15 +31,15 @@ import {RouterOutlet} from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainPageComponent implements AfterViewInit {
+  private readonly observer = inject(BreakpointObserver);
+  private readonly cdRef = inject(ChangeDetectorRef);
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private readonly observer: BreakpointObserver, private readonly cdRef: ChangeDetectorRef) {
-  }
 
-
-  ngAfterViewInit() {
-    this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
+  ngAfterViewInit(): void {
+    this.observer.observe([maxWidthPattern]).subscribe((res) => {
       if (res.matches) {
         this.sidenav.mode = 'over';
         this.sidenav.close();

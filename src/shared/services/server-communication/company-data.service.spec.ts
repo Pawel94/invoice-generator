@@ -1,12 +1,11 @@
 import {TestBed} from '@angular/core/testing';
 
 import {CompanyDataService} from './company-data.service';
-import {CompanyInfo} from "../../model/company-info-model";
+import {CompanyInfo} from "../../model";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
-
+import { environment } from '../../../environments/environment'
 describe('CompanyDataService', () => {
   let service: CompanyDataService;
-  let url = '../assets/backend/data.json';
   let httpController: HttpTestingController;
   const mockData: CompanyInfo =
     {
@@ -38,7 +37,7 @@ describe('CompanyDataService', () => {
 
     const req = httpController.expectOne({
       method: 'GET',
-      url: `${url}`,
+      url: `${environment.apiUrl}`,
     });
 
     req.flush(mockData);

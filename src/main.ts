@@ -8,12 +8,13 @@ import {RouterModule} from "@angular/router";
 import {routes} from "./app/app-routing.module";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {HttpClientModule,} from '@angular/common/http';
+import {TranslocoRootModule} from "./transloco-root.module";
 
 if (environment.production) {
   enableProdMode();
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [importProvidersFrom(RouterModule.forRoot(routes), HttpClientModule), provideAnimations()]
+  providers: [importProvidersFrom(RouterModule.forRoot(routes), HttpClientModule), provideAnimations(),importProvidersFrom(TranslocoRootModule),]
 });
 

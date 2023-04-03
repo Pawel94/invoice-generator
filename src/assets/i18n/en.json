@@ -1,0 +1,26 @@
+{
+  "title": "name",
+  "form": {
+    "min_length": "Min length {{ min }}",
+    "max_length": "Max length {{ max }}",
+    "syntax_error": "Please input number",
+    "empty_number": "Please input number",
+    "empty_value": "Please input value",
+    "add": "Add new item",
+    "submit": "Submit"
+
+  },
+  "table": {
+    "name": "Name",
+    "count": "Count",
+    "price": "Price",
+    "sum": "Sum {{ sum }}",
+    "items": "No items"
+  },
+  "sidebar": {
+    "new": "New invoice",
+    "preview": "Preview invoice",
+    "menu": "MENU"
+  }
+}
+

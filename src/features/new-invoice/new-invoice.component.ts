@@ -19,6 +19,7 @@ import {Invoice} from "../../shared/model";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {Action} from "../../shared/model";
+import {TranslocoModule} from "@ngneat/transloco";
 
 const nameMinCharacters = 3;
 const nameMaxCharacters = 30;
@@ -37,6 +38,7 @@ const onlyNumberPattern = "^[0-9]*$"
     MatIconModule,
     MatButtonModule,
     MatGridListModule,
+    TranslocoModule,
     MatSnackBarModule],
   templateUrl: './new-invoice.component.html',
   styleUrls: ['./new-invoice.component.scss'],

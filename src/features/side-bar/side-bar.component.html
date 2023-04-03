@@ -1,16 +1,22 @@
-<div>
+<div  *transloco="let t;read: 'sidebar'">
   <mat-toolbar class="main-text-container">
-    <h1>Menu</h1>
+    <h1>{{
+      t('menu')
+      }}</h1>
   </mat-toolbar>
   <div class="btn-container">
     <button mat-stroked-button class="btn-side-bar" routerLinkActive="active-link" [routerLink]="[
         '/',
-      ]" [routerLinkActiveOptions]="{exact:true}">New invoice
+      ]" [routerLinkActiveOptions]="{exact:true}">{{
+      t('new')
+      }}
     </button>
     <button mat-stroked-button class="btn-side-bar" routerLinkActive="active-link"
             [routerLink]="[
         '/preview',
-      ]">Preview invoice
+      ]">{{
+      t('preview')
+      }}
     </button>
   </div>
 </div>

@@ -2,11 +2,13 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Invoice} from "../../../shared/model";
 import {MatTableModule} from "@angular/material/table";
+import {TranslocoModule} from "@ngneat/transloco";
+
 
 @Component({
   selector: 'app-preview-invoice-table',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule,TranslocoModule],
   templateUrl: './preview-invoice-table.component.html',
   styleUrls: ['./preview-invoice-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,4 +1,4 @@
-<mat-sidenav-container>
+<mat-sidenav-container *transloco="let t">
   <app-side-bar></app-side-bar>
   <mat-sidenav #sidenav="matSidenav" mode="side" class="mat-elevation-z8" opened>
     <app-side-bar></app-side-bar>
@@ -14,9 +14,10 @@
             close
           </mat-icon>
         </button>
-        NAME
+        {{ t('title') }}
       </mat-toolbar>
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+

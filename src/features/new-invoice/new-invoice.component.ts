@@ -120,30 +120,4 @@ export class NewInvoiceComponent implements OnInit {
     }
 
   }
-
-  getSyntaxForMinimumCharLength(): string {
-    return 'Min length 3'
-  }
-
-  getSyntaxForMaximumCharLength(): string {
-    return 'Min length 30'
-  }
-
-  getErrorMessageForMinValue(): string {
-    return 'Min length 1'
-  }
-
-  getErrorMessageForMaxValue(value: string): string {
-    if (value === 'price') return 'Max length 1000000'
-    if (value === 'count') return 'Max length 100'
-    return ''
-  }
-
-  getSyntaxErrorMessage(): string {
-    return 'Please input number'
-  }
-
-  getEmptyErrorMessage(): string {
-    return 'Please input value'
-  }
 }
